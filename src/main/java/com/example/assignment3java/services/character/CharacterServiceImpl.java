@@ -28,7 +28,6 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public Collection<Character> findAll() {
-        System.out.println("hej");
         return characterRepository.findAll();
     }
 
