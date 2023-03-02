@@ -1,9 +1,14 @@
 package com.example.assignment3java.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 public class Movie {
     @Id
@@ -21,7 +26,7 @@ public class Movie {
     private String picture;
     @Column(length = 2083)
     private String trailer;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "franchise_id")
     private Franchise franchise;
