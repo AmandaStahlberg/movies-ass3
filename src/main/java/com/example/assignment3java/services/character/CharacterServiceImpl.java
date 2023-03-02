@@ -2,7 +2,6 @@ package com.example.assignment3java.services.character;
 
 import com.example.assignment3java.models.Character;
 import com.example.assignment3java.repositories.CharacterRepository;
-import com.example.assignment3java.services.character.CharacterService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,8 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public Collection<Character> findAll() {
-        return null;
+        System.out.println("hej");
+        return characterRepository.findAll();
     }
 
     @Override
