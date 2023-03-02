@@ -28,8 +28,8 @@ public class MovieController {
 
     @PostMapping // POST: localhost:8080/api/v1/movies
     public ResponseEntity<Movie> add(@RequestBody Movie movie) {
-        Movie stud = movieService.add(movie);
-        URI location = URI.create("students/" + stud.getId());
+        Movie addMovie = movieService.add(movie);
+        URI location = URI.create("movies/" + addMovie.getId());
         return ResponseEntity.created(location).build();
         // return ResponseEntity.status(HttpStatus.CREATED).build();
     }
