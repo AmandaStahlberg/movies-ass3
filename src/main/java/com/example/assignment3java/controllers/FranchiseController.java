@@ -1,6 +1,5 @@
 package com.example.assignment3java.controllers;
 
-import com.example.assignment3java.models.Character;
 import com.example.assignment3java.models.Franchise;
 import com.example.assignment3java.services.franchise.FranchiseService;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class FranchiseController {
         return ResponseEntity.ok(franchiseService.findAll());
     }
 
-    @GetMapping("{id}") // GET: localhost:8080/api/v1/franshises/1
+    @GetMapping("{id}") // GET: localhost:8080/api/v1/franchises/1
     public ResponseEntity<Franchise> getById(@PathVariable int id) {
         return ResponseEntity.ok(franchiseService.findById(id));
     }
