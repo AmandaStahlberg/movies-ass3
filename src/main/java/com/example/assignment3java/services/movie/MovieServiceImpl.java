@@ -42,10 +42,11 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public void deleteById(Integer id) {
-        moviesRepository.deleteById(id);
+        if (moviesRepository.existsById(id)) {
+            Movie movie = moviesRepository.findById(id).get();
+            moviesRepository.delete(movie);
+        } else
+            logger.warn("No movie exists with ID: " + id);
     }
-    @Override
-    public void delete(Movie entity) {
 
-    }
 }

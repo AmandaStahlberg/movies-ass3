@@ -47,4 +47,10 @@ public class CharacterController {
         characterService.update(character);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("{id}") // DELETE: localhost:8080/api/v1/characters/1
+    public ResponseEntity delete(@PathVariable int id) {
+        characterService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

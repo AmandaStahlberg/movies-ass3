@@ -42,13 +42,13 @@ public class FranchiseServiceImpl implements FranchiseService{
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
-    }
-
-    @Override
-    public void delete(Franchise entity) {
-
+    public void deleteById(Integer id) {
+        if (franchiseRepository.existsById(id)) {
+            Franchise franchise = franchiseRepository.findById(id).get();
+            franchise.getMovies().forEach(m -> m.setFranchise(null));
+            franchiseRepository.delete(franchise);
+        } else
+            logger.warn("No franchise exists with ID: " + id);
     }
 
     @Override
