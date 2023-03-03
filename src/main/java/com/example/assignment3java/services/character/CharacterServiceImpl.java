@@ -1,8 +1,10 @@
 package com.example.assignment3java.services.character;
 
 import com.example.assignment3java.models.Character;
+import com.example.assignment3java.models.Movie;
 import com.example.assignment3java.repositories.CharacterRepository;
 
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -43,15 +45,20 @@ public class CharacterServiceImpl implements CharacterService {
 
     
     @Override
-    public void deleteById(Integer integer) {
-
+    @Transactional
+    public void deleteById(Integer id) {
+        if (characterRepository.existsById(id)){
+            Character character = characterRepository.findById(id).get();
+            Set<Movie> movies = character.getMovies();
+            movies.forEach(mov ->
+                    mov.getCharacters()
+                            .removeIf(r -> r.getId() == character.getId()));
+            movies.clear();
+            characterRepository.delete(character);
+        }
+        else
+            logger.warn("No professor exists with ID: " + id);
     }
-
-    @Override
-    public void delete(Character entity) {
-
-    }
-
 
     @Override
     public Set<Character> findAllCharactersByFranchise(Integer id) {
