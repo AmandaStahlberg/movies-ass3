@@ -1,6 +1,7 @@
 package com.example.assignment3java.controllers;
 
 import com.example.assignment3java.models.Character;
+import com.example.assignment3java.models.Franchise;
 import com.example.assignment3java.services.character.CharacterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +33,14 @@ public class CharacterController {
         Character addCharacter = characterService.add(character);
         URI location = URI.create("characters/" + addCharacter.getId());
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("{id}") // PUT: localhost:8080/api/v1/characters/1
+    public ResponseEntity<Character> update(@RequestBody Character character, @PathVariable int id) {
+        // Validates if body is correct
+        if(id != character.getId())
+            return ResponseEntity.badRequest().build();
+        characterService.update(character);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -32,19 +32,12 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public Movie add(Movie movie) {
-        return  moviesRepository.save(movie);
+        return moviesRepository.save(movie);
     }
 
-    @Override // This method needs to be updated correctly
+    @Override
     public Movie update(Movie movie) {
-
-        Movie updMovie = moviesRepository.findById(movie.getId()).get();
-
-        updMovie.setTitle(movie.getTitle());
-        updMovie.setDirector(movie.getDirector());
-
-
-        return moviesRepository.save(updMovie);
+        return moviesRepository.save(movie);
     }
 
     @Override

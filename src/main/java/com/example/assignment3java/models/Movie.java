@@ -26,10 +26,26 @@ public class Movie {
     private String picture;
     @Column(length = 2083)
     private String trailer;
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", release='" + release + '\'' +
+                ", genre='" + genre + '\'' +
+                ", director='" + director + '\'' +
+                ", picture='" + picture + '\'' +
+                ", trailer='" + trailer + '\'' +
+
+                '}';
+    }
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "franchise_id")
     private Franchise franchise;
+
+
     @ManyToMany
     @JoinTable(
             name = "movie_character",
@@ -37,4 +53,8 @@ public class Movie {
             inverseJoinColumns = {@JoinColumn(name = "character_id")}
     )
     private Set<Character> characters;
+
+    public int getId() {
+        return id;
+    }
 }
