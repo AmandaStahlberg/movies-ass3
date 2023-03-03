@@ -32,8 +32,8 @@ public class FranchiseServiceImpl implements FranchiseService{
     }
 
     @Override
-    public Franchise add(Franchise entity) {
-        return null;
+    public Franchise add(Franchise franchise) {
+        return franchiseRepository.save(franchise);
     }
 
     @Override

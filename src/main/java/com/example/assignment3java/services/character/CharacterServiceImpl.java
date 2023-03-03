@@ -32,8 +32,8 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public Character add(Character entity) {
-        return null;
+    public Character add(Character character) {
+        return characterRepository.save(character);
     }
 
     @Override
